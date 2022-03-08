@@ -14,6 +14,7 @@ namespace Trading.Controllers
     public class TradeController : ControllerBase
     {
          private readonly ILogger<TradeController> _logger;
+         private readonly ILogger<TradeManager> _tradeManager;
         public TradeController(ILogger<TradeController> logger, TradeManager tradeManager)
         {
             _logger = logger;
@@ -22,7 +23,8 @@ namespace Trading.Controllers
 
         [HttpPost]
         public ActionResult Execute(TradeTransaction transaction){
-
+            _tradeManager.ExecuteTrade(transaction);
+            return "Trade Executed successfully";
         }
     }
 }
